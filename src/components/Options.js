@@ -1,15 +1,29 @@
-const Options = () => {
+import { buttonFields } from '../Object-Content.js';
+
+const Options = ({ values, setValues }) => {
+
+    const buttonStateUpdate = (value) => {
+        const data = values;
+        data.button = value;
+        setValues({...data})
+    }
+    
+    const buttonMapping = buttonFields.map(button => {
+        return (
+            <div key={button.id} 
+                onClick={() => buttonStateUpdate(button.name)}
+                style={{ backgroundColor: 
+                    values.button === button.name && values.color}}
+                className='option-button-container pointer'>
+                    <h2 style={{ fontFamily: values.font }}
+                        className={values.button === button.name ? `button-active-text` : ``}>{button.name}</h2>
+            </div>
+        )
+    });
+    
     return (
         <div className='options-container'>
-            <div className='option-button-container'>
-                <h2>pomodoro</h2>
-            </div>
-            <div className='option-button-container'>
-                <h2>short break</h2>
-            </div>
-            <div className='option-button-container'>
-                <h2>long break</h2>
-            </div>
+            {buttonMapping}
         </div>
     )
 }

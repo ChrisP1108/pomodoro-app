@@ -1,0 +1,72 @@
+.clock-body-outer-container {
+    margin-top: 3rem!important;
+    width: 80vw;
+    height: calc(80vw);
+    background: linear-gradient(-45deg, #2E325A, #0E112A);
+    filter: drop-shadow(-3.125rem -3.125rem 6.25rem #272C5A);   
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock-body-inner-container {
+    width: 89%!important;
+    height: 89%!important;
+    background-color: $h!important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    h3 {
+        color: $d;
+        margin-top: 2.5rem!important;
+        padding: 0!important;
+        font-size: 5rem!important;
+        font-weight: 700;
+        position: relative;
+        height: 5.5rem;
+        letter-spacing: 0rem;
+    }
+
+    h4 {
+        color: $d;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 0.8rem!important;
+        margin-top: 0rem;
+        padding: 0!important;
+        letter-spacing: 0.821rem!important;
+        font-size: 0.875rem!important;
+        font-weight: 700;
+        position: relative;
+        height: 2.5rem;
+        width: 80%;
+    }
+
+    .progress-bar-container {
+        width: 92.88%;
+        height: 92.88%;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        transform: rotate(-90deg);
+
+        circle {
+            position: absolute;
+            fill: transparent;
+            stroke-width: 3.75%;
+            stroke-dasharray: 300%;         
+        }
+    }
+    .clock-numbers-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,6 +1,6 @@
 import { timeFields, fontFields, colorFields} from '../Object-Content';
 
-const values = ({ values, setValues, settingsModalToggler, startTimer }) => {
+const values = ({ values, setValues, settingsModalToggler }) => {
 
     const valuestateUpdate = (name, value) => {
         let data = values;
@@ -110,8 +110,8 @@ const values = ({ values, setValues, settingsModalToggler, startTimer }) => {
     const fontFieldsMapping = fontFields.map(font => {
         return (
             <div key={font.id} 
-                onClick ={() => valuestateUpdate('font', font.id)}
-                className={`${values.font === font.id && `active-font`} 
+                onClick ={() => valuestateUpdate('font', font.font)}
+                className={`${values.font === font.font && `active-font`} 
                     f${font.id} font-circle-container pointer`}>
                     <p>Aa</p>
             </div>
@@ -121,9 +121,9 @@ const values = ({ values, setValues, settingsModalToggler, startTimer }) => {
     const colorFieldsMapping = colorFields.map(color => {
         return (
             <div key={color.id} 
-                onClick ={() => valuestateUpdate('color', color.id)}
+                onClick ={() => valuestateUpdate('color', color.color)}
                 className={`c${color.id} circle-container pointer`}>
-                    {values.color === color.id && 
+                    {values.color === color.color && 
                         <div className="circle-checked"></div>
                     }
             </div>
@@ -153,7 +153,7 @@ const values = ({ values, setValues, settingsModalToggler, startTimer }) => {
                 <div className="field-bottom-filler"></div>
             </div>
             <div className="d-flex justify-content-center">
-                <div onClick={() => { startTimer(true); settingsModalToggler(false) }}
+                <div onClick={() => settingsModalToggler(false)}
                     className="apply-button-container pointer">
                     <p>Apply</p>
                 </div>

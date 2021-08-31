@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { defaultSettings } from './Object-Content';
+import { defaultSettings, defaultTimerState } from './Object-Content';
 import Options from './components/Options';
 import Clock from './components/Clock';
 import Settings from './components/Settings';
@@ -9,7 +9,7 @@ const App = () => {
 
   const [toggleSettings, setToggleSettings] = useState(false);
   const [settings, setSettings] = useState(defaultSettings);
-  const [startTimer, setStartTimer] = useState(false);
+  const [timerToggle, setTimerToggle] = useState(defaultTimerState);
 
   return (
     <div className='viewport-container'>
@@ -19,17 +19,21 @@ const App = () => {
             settingsModalToggler={setToggleSettings} 
             values={settings}
             setValues={setSettings}
-            startTimer={setStartTimer}
           /> 
         }
       <div className='main-container'>
         <h1>pomodoro</h1>
-        <Options />
+        <Options 
+          values={settings}
+          setValues={setSettings}
+        />
         <Clock 
           values={settings}
-          startTimer={startTimer}
+          timerToggle={timerToggle}
+          setTimerToggle={setTimerToggle}
+          toggleSettings={toggleSettings}
         />
-        <div onClick={() => { setToggleSettings(true); setStartTimer(false) }}
+        <div onClick={() => { setToggleSettings(true); setTimerToggle(defaultTimerState) }}
             className="settings-icon-container pointer">
           <div className="settings-icon cursor"></div>
         </div>
