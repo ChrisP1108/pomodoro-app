@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useInterval } from 'react-interval-hook';
 
-const Clock = () => {
+const Clock = ({ timeValues }) => {
+
+    console.log(timeValues);
 
     const [progressBar, setProgressBar] = useState(300);
     const [incrementAmount, setIncrementAmount] = useState(.5);

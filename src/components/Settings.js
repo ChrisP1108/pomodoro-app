@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { timeFields } from '../Object-Content';
+import { timeFields, defaultTimeState } from '../Object-Content';
 
-const Settings = ({ settingsToggler }) => {
+const Settings = ({ settingsToggler, timeValues }) => {
 
     const defaultTimeState = {
         pomodoro: 0,
@@ -46,6 +46,7 @@ const Settings = ({ settingsToggler }) => {
                 break;
         }
         setTimes({...data});
+        timeValues(times);
     }
 
     const settingsHeader = () => {

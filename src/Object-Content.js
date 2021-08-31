@@ -15,3 +15,9 @@ export const timeFields = [
         variable: 'longBreak'
     }
 ]
+
+export const defaultTimeState = {
+    pomodoro: 0,
+    shortBreak: 0,
+    longBreak: 0
+}
