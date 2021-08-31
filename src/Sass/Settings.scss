@@ -1,0 +1,144 @@
+.settings-modal-container {
+    position: absolute;
+    width: 90%!important;
+    margin-bottom: 1.5rem;
+    height: 35.938rem!important;
+    background-color: $f;
+    z-index: 2;
+    border-radius: 1rem!important;
+    transition: 0.25s!important;
+
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 0.063rem solid $g;
+        height: 4.5rem!important;
+        width: 100%!important;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 1.5rem 0;
+    }
+
+    h4 {
+        color: $h;
+        font-family: 'Kumbh Sans', sans-serif;
+        margin: 0!important;
+        padding: 0!important;
+        font-size: 1.25rem!important;
+        font-weight: 800;
+    }
+
+    h5 {
+        color: $h;
+        font-family: 'Kumbh Sans', sans-serif;
+        margin: 0!important;
+        padding: 0!important;
+        font-size: 0.688rem!important;
+        letter-spacing: 0.264rem;
+        font-weight: 800;
+        margin-bottom: 0.625rem!important;
+    }
+
+    .closing-icon-container {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(0.80rem);
+    }
+
+    .closing-icon {
+        background-image: url('../../src/assets/icon-close.svg');
+        width: 0.875rem;
+        height: 0.875rem;
+    }
+
+    .time-settings-container {
+        margin: 1.5rem!important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-bottom: 0.063rem solid $g;
+        h6 {
+            color: $h;
+            font-family: 'Kumbh Sans', sans-serif;
+            margin: 0!important;
+            padding: 0!important;
+            font-size: 0.75rem!important;
+            font-weight: 800;
+            opacity: 0.5;
+        }
+        .number-row-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-top: 0.5rem!important;
+        }
+        .number-value-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 50%!important;
+            height: 2.5rem!important;
+            background: $g!important;
+            border-radius: 0.563rem!important;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        .text-field-placement {
+            width: 30%!important;
+            border: none;
+            background: transparent;
+            font-family: 'Kumbh Sans', sans-serif;
+            margin: 0!important;
+            padding: 0!important;
+            font-size: 0.875rem!important;
+            font-weight: 800;
+        }
+        .text-field-arrows-container {
+            height: 1.313rem!important;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: space-between;
+        }
+        .text-field-up-icon {
+            background-image: url('../../src/assets/icon-arrow-up.svg');
+            width: 0.875rem;
+            height: 0.45rem;
+            position: relative;
+        }
+        .text-field-down-icon {
+            background-image: url('../../src/assets/icon-arrow-down.svg');
+            width: 0.875rem;
+            height: 0.45rem;
+            position: relative;
+        }
+        .text-field-arrow-filler-up {
+            position: absolute;
+            width: 2.5rem;
+            height: 1.2rem;
+            top: -0.65rem;
+            left: -0.85rem;
+        }
+        .text-field-arrow-filler-down {
+            position: absolute;
+            width: 2.5rem;
+            height: 1.2rem;
+            top: -0.25rem;
+            left: -0.85rem;
+        }
+        .text-field-bottom-filler {
+            margin-bottom: 1.5rem!important;
+        }
+    }
+}

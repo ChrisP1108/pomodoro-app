@@ -1,15 +1,28 @@
-html {
-    background-color: $e!important;
+.pointer {
+    cursor: pointer!important;
+}
+
+.trans-background {
     width: 100%;
     height: 100%;
+    position: absolute;
+    background-color: #0000007e;
+    z-index: 1;
+    transition: .25s!important;
 }
 
 .viewport-container {
     background-color: $e!important;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }
 
 .main-container {
-    margin: 2rem 1.5rem 3rem!important;
+    padding: 2rem 1.5rem 3rem!important;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -101,10 +114,24 @@ html {
             fill: transparent;
             stroke-width: 3.75%;
             stroke-dasharray: 300%;
-            stroke: $a;
-            stroke-linecap: round;
-            
+            stroke: $a;          
         }
     }
 }
+
+.settings-icon-container {
+    width: 3.5rem;
+    height: 3.5rem;
+    margin-top: 4.875rem!important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .settings-icon {
+        background-image: url('../../src/assets/icon-settings.svg');
+        width: 1.75rem;
+        height: 1.75rem;
+    }
+}
+
 
