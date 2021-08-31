@@ -16,8 +16,34 @@ export const timeFields = [
     }
 ]
 
-export const defaultTimeState = {
-    pomodoro: 0,
-    shortBreak: 0,
-    longBreak: 0
+export const fontFields = [
+    {
+        id: 1
+    },
+    {
+        id: 2
+    },
+    {
+        id: 3
+    }
+]
+
+export const colorFields = [
+    {
+        id: 1
+    },
+    {
+        id: 2
+    },
+    {
+        id: 3
+    }
+]
+
+export const defaultSettings = {
+    pomodoro: 1,
+    shortBreak: 1,
+    longBreak: 1,
+    font: 1,
+    color: 1
 }

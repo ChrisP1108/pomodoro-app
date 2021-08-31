@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useInterval } from 'react-interval-hook';
 
-const Clock = ({ timeValues }) => {
+const Clock = ({ values, startTimer }) => {
 
-    console.log(timeValues);
+    console.log(values);
+    console.log(startTimer);
 
     const [progressBar, setProgressBar] = useState(300);
-    const [incrementAmount, setIncrementAmount] = useState(.5);
+    const [incrementAmount, setIncrementAmount] = useState(1);
     const [timer, setTimer] = useState({minutes: 17, seconds: 59});
     
     const incrementer = () => {

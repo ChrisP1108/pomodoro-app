@@ -1,8 +1,8 @@
 .settings-modal-container {
     position: absolute;
     width: 90%!important;
-    margin-bottom: 1.5rem;
-    height: 35.938rem!important;
+    margin-bottom: 2.25rem;
+    height: 34.938rem!important;
     background-color: $f;
     z-index: 2;
     border-radius: 1rem!important;
@@ -40,6 +40,15 @@
         margin-bottom: 0.625rem!important;
     }
 
+    p {
+        color: $e;
+        margin: 0!important;
+        padding: 0!important;
+        font-size: 0.938rem!important;
+        font-weight: 600;
+        opacity: 0.75;
+    }
+
     .closing-icon-container {
         width: 2.5rem;
         height: 2.5rem;
@@ -55,8 +64,18 @@
         height: 0.875rem;
     }
 
-    .time-settings-container {
+    .margins {
         margin: 1.5rem!important;
+    }
+
+    .color-margins {
+        margin-top: 0;
+        margin-left: 1.5rem!important;
+        margin-right: 1.5rem!important;
+    }
+
+    .section-settings-container {
+        margin: 1.5rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -137,8 +156,88 @@
             top: -0.25rem;
             left: -0.85rem;
         }
-        .text-field-bottom-filler {
+        .field-bottom-filler {
             margin-bottom: 1.5rem!important;
+        }
+        .font-circle-container {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: $g;
+        }
+        .f1 {
+            p {
+                font-family: 'Kumbh Sans', sans-serif;
+            }
+        }
+        .f2 {
+            p {
+                font-family: 'Roboto Slab', serif;
+            }
+        }
+        .f3 {
+            p {
+                font-family: 'Space Mono', monospace;
+            }
+        }
+        .active-font {
+            background: $h!important;
+            p {
+                color: $f!important;
+                opacity: 1!important;
+            }
+        }
+    }
+    .section-color-container {
+        margin: -0.5rem 1.5rem 0.7rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .circle-container {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .c1 {
+            background: $a;
+        }
+        .c2 {
+            background: $b;
+        }
+        .c3 {
+            background: $c;
+        }
+        .circle-checked {
+            background-image: url('../../src/assets/icon-check.svg');
+            width: 0.938rem;
+            height: 0.688rem;
+        }
+    }
+    .apply-button-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40%!important;
+        height: 3.313rem!important;
+        border-radius: 1.688rem!important;
+        background: $a!important;
+        transform: translateY(50%);
+
+        p {
+            color: $f;
+            font-family: 'Kumbh Sans', sans-serif;
+            margin: 0!important;
+            padding: 0!important;
+            font-size: 1rem!important;
+            font-weight: 800;
+            opacity: 1;
         }
     }
 }
