@@ -1,11 +1,10 @@
 import { timeFields, fontFields, colorFields, 
-    defaultClockStatus, defaultProgressBar, defaultSettings } from '../Object-Content';
+    defaultClockStatus, defaultProgressBar } from '../Object-Content';
 
 const Settings = ({ values, setValues, settingsModalToggler,
         setClockStatus, setProgressBar }) => {
 
     const valuestateUpdate = (name, value) => {
-        let data = values.settingState;
         switch(name) {
             case 'pomodoro':
                 setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: Number(value)}]}})
@@ -65,7 +64,7 @@ const Settings = ({ values, setValues, settingsModalToggler,
                 setValues({...values, settingState: {...values.settingState, font: value}})
                 break;
             case 'color':
-                setValues({...values, settingState: {...values.settingState, font: value}})
+                setValues({...values, settingState: {...values.settingState, color: value}})
                 break;
             default:
                 break;

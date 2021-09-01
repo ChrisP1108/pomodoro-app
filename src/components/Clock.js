@@ -8,6 +8,15 @@ const Clock = ({ values, setValues, toggleSettings,
     const clockCounter = (input) => {
         if (stopClock || toggleSettings) {
             stop(true);
+            if (clockStatus.pomodoro === 'PAUSE') {
+                setClockStatus({...clockStatus, pomodoro: 'RESUME'});
+            } 
+            if (clockStatus.shortBreak === 'PAUSE') {
+                setClockStatus({...clockStatus, shortBreak: 'RESUME'});
+            } 
+            if (clockStatus.longBreak === 'PAUSE') {
+                setClockStatus({...clockStatus, longBreak: 'RESUME'});
+            }
             setStopClock(false);
             return;
         }
@@ -61,7 +70,7 @@ const Clock = ({ values, setValues, toggleSettings,
         () => { clockCounter(values.clockState.button === 'pomodoro' ? 'pomodoro'
                             : values.clockState.button === 'short break' ? 'short break'
                             : 'long break');
-        }, 100,
+        }, 1000,
         {
             autoStart: false,
             immediate: false,
@@ -135,7 +144,7 @@ const Clock = ({ values, setValues, toggleSettings,
             ? state.pomodoro[0].seconds
             : state.button === 'short break' ? state.shortBreak[0].seconds
             : state.longBreak[0].seconds
-        const data = `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+        const data = `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
         return data;
     }
 
@@ -171,7 +180,8 @@ const Clock = ({ values, setValues, toggleSettings,
                     </svg>
                 </div>
                 <div className="clock-numbers-container">
-                    <h3 style={{fontFamily: values.clockState.font}}>{clockTimeDisplay()}</h3>
+                    <h3 style={{fontFamily: values.clockState.font, 
+                            transform: values.clockState.font === 'Space Mono' ? `scale(0.8)` : `scale(1.0)`}}>{clockTimeDisplay()}</h3>
                     <h4 style={{fontFamily: values.clockState.font }}>{clockStatusDisplay()}</h4>
                 </div>
             </div>
