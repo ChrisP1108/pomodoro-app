@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useInterval } from 'react-interval-hook';
-import { defaultClockStatus } from '../Object-Content';
+import { defaultClockStatus, progressBarStart } from '../Object-Content';
 
 const Clock = ({ values, setValues, toggleSettings, 
     stopClock, setStopClock, clockStatus, setClockStatus,
@@ -18,13 +18,15 @@ const Clock = ({ values, setValues, toggleSettings,
                         : data.longBreak[0];
         if (clock.minutes === 0 && clock.seconds === 0) {
             stop(true);
-            setProgressBar(0);
             if (input === 'pomodoro') {
                 setClockStatus({...clockStatus, pomodoro: 'RESTART'});
+                setProgressBar({...progressBar, pomodoro: 0});
             } else if (input === 'short break') {
                 setClockStatus({...clockStatus, shortBreak: 'RESTART'});
+                setProgressBar({...progressBar, shortBreak: 0});
             } else {
                 setClockStatus({...clockStatus, longBreak: 'RESTART'});
+                setProgressBar({...progressBar, longBreak: 0});
             }
             return;
         } else if (clock.minutes >= 1 && clock.seconds === 0) {
@@ -49,15 +51,16 @@ const Clock = ({ values, setValues, toggleSettings,
         }
         const totalSeconds = (clock.minutes * 60) + clock.seconds;
         if (input === 'pomodoro') {
-            const incrementAmount = progressBar.pomodoro / totalSeconds;
-            setProgressBar({...progressBar, pomodoro: progressBar.pomodoro - incrementAmount});
+            const incrementPomodoro = progressBar.pomodoro / totalSeconds;
+            setProgressBar({...progressBar, pomodoro: progressBar.pomodoro - incrementPomodoro});
         } else if (input === 'short break') {
-            const incrementAmount = progressBar.shortBreak / totalSeconds;
-            setProgressBar({...progressBar, pomodoro: progressBar.shortBreak - incrementAmount});
+            const incrementShortBreak = progressBar.shortBreak / totalSeconds;
+            setProgressBar({...progressBar, shortBreak: progressBar.shortBreak - incrementShortBreak});
         } else {
-            const incrementAmount = progressBar.longBreak / totalSeconds;
-            setProgressBar({...progressBar, pomodoro: progressBar.longBreak - incrementAmount});
+            const incrementLongBreak = progressBar.longBreak / totalSeconds;
+            setProgressBar({...progressBar, longBreak: progressBar.longBreak - incrementLongBreak});
         }
+        console.log(progressBar);
         setValues({...values, clockState: data});
     }
 
@@ -79,7 +82,7 @@ const Clock = ({ values, setValues, toggleSettings,
             if (clockStatus.pomodoro === 'START') {
                 setClockStatus({...clockStatus, pomodoro: 'PAUSE'});
                 start(true);
-                setProgressBar({...progressBar, pomodoro: 740});
+                setProgressBar({...progressBar, pomodoro: progressBarStart});
             } else if (clockStatus.pomodoro === 'PAUSE') {
                 setClockStatus({...clockStatus, pomodoro: 'RESUME'});
                 stop(true);
@@ -91,13 +94,13 @@ const Clock = ({ values, setValues, toggleSettings,
                 setValues({...data});
                 setClockStatus({...clockStatus, pomodoro: 'PAUSE'});
                 start(true);
-                setProgressBar({...progressBar, pomodoro: 740});
+                setProgressBar({...progressBar, pomodoro: progressBarStart});
             }
         } else if (type === 'short break') {
             if (clockStatus.shortBreak === 'START') {
                 setClockStatus({...clockStatus, shortBreak: 'PAUSE'});
                 start(true);
-                setProgressBar({...progressBar, shortBreak: 740});
+                setProgressBar({...progressBar, shortBreak: progressBarStart});
             } else if (clockStatus.shortBreak === 'PAUSE') {
                 setClockStatus({...clockStatus, shortBreak: 'RESUME'});
                 stop(true);
@@ -109,13 +112,13 @@ const Clock = ({ values, setValues, toggleSettings,
                 setValues({...data});
                 setClockStatus({...clockStatus, shortBreak: 'PAUSE'});
                 start(true);
-                setProgressBar({...progressBar, shortBreak: 740});
+                setProgressBar({...progressBar, shortBreak: progressBarStart});
             }
         } else if (type === 'long break') {
             if (clockStatus.longBreak === 'START') {
                 setClockStatus({...clockStatus, longBreak: 'PAUSE'});
                 start(true);
-                setProgressBar({...progressBar, longBreak: 740});
+                setProgressBar({...progressBar, longBreak: progressBarStart});
             } else if (clockStatus.longBreak === 'PAUSE') {
                 setClockStatus({...clockStatus, longBreak: 'RESUME'});
                 stop(true);
@@ -127,7 +130,7 @@ const Clock = ({ values, setValues, toggleSettings,
                 setValues({...data});
                 setClockStatus({...clockStatus, longBreak: 'PAUSE'});
                 start(true);
-                setProgressBar({...progressBar, longBreak: 740});
+                setProgressBar({...progressBar, longBreak: progressBarStart});
             }
         }
     }

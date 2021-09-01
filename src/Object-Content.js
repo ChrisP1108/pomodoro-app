@@ -122,3 +122,5 @@ export const defaultProgressBar = {
     shortBreak: 0,
     longBreak: 0
 }
+
+export const progressBarStart = 740;
