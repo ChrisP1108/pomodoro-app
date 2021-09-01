@@ -8,67 +8,68 @@ const Settings = ({ values, setValues, settingsModalToggler,
         let data = values.settingState;
         switch(name) {
             case 'pomodoro':
-                data.pomodoro[0].minutes = Number(value);
-                if (data.pomodoro[0].minutes <= 1) {
-                    data.pomodoro[0].minutes = Number(1);
+                setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: Number(value)}]}})
+                if (values.settingState.pomodoro[0].minutes <= 1) {
+                    setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: 1}]}})
                     break;
                 }
                 break;
             case 'increment.pomodoro':
-                data.pomodoro[0].minutes = data.pomodoro[0].minutes + 1;
+                setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: values.settingState.pomodoro[0].minutes + 1}]}})
                 break;
             case 'decrement.pomodoro':
-                if (data.pomodoro[0].minutes <= 1) {
-                    data.pomodoro[0].minutes = Number(1);
+                if (values.settingState.pomodoro[0].minutes <= 1) {
+                    setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: 1}]}})
                     break;
                 } else {
-                    data.pomodoro[0].minutes = data.pomodoro[0].minutes - 1;
+                    setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: values.settingState.pomodoro[0].minutes - 1}]}})
                     break;
                 }
             case 'shortBreak':
-                data.shortBreak = Number(value);
-                if (data.shortBreak[0].minutes <= 1) {
-                    data.shortBreak[0].minutes = Number(1);
+                setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: Number(value)}]}})
+                if (values.settingState.shortBreak[0].minutes <= 1) {
+                    setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: 1}]}})
                     break;
                 }
                 break;
             case 'increment.shortBreak':
-                data.shortBreak[0].minutes = data.shortBreak[0].minutes + 1;
+                setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: values.settingState.shortBreak[0].minutes + 1}]}})
                 break;
             case 'decrement.shortBreak':
-                data.shortBreak[0].minutes = data.shortBreak[0].minutes - 1;
-                if (data.shortBreak[0].minutes <= 1) {
-                    data.shortBreak[0].minutes = Number(1);
+                if (values.settingState.shortBreak[0].minutes <= 1) {
+                    setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: 1}]}})
                     break;
+                } else {
+                    setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: values.settingState.shortBreak[0].minutes - 1}]}})
                 }
                 break;
             case 'longBreak':
-                data.longBreak[0].minutes = Number(value);
-                if (data.longBreak[0].minutes <= 1) {
-                    data.longBreak[0].minutes = Number(1);
+                setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: Number(value)}]}})
+                if (values.settingState.longBreak[0].minutes <= 1) {
+                    setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: 1}]}})
                     break;
                 }
                 break;
             case 'increment.longBreak':
-                data.longBreak[0].minutes = data.longBreak[0].minutes + 1;
+                setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: values.settingState.longBreak[0].minutes + 1}]}})
                 break;
             case 'decrement.longBreak':
-                data.longBreak[0].minutes = data.longBreak[0].minutes - 1;
-                if (data.longBreak[0].minutes <= 1) {
-                    data.longBreak[0].minutes = Number(1);
+                if (values.settingState.longBreak[0].minutes <= 1) {
+                    setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: 1}]}})
                     break;
-                }
+                } else {
+                    setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: values.settingState.longBreak[0].minutes - 1}]}})
+                } 
                 break;
             case 'font':
-                data.font = value;
+                setValues({...values, settingState: {...values.settingState, font: value}})
                 break;
             case 'color':
-                data.color = value;
+                setValues({...values, settingState: {...values.settingState, font: value}})
                 break;
             default:
                 break;
         }
-        setValues({...values, settingState: data});
     }
 
     const valuesHeader = () => {
@@ -135,11 +136,7 @@ const Settings = ({ values, setValues, settingsModalToggler,
     });
 
     const toggleApplyButton = () => {
-        let data = values.settingState
-        data.pomodoro[0].seconds = 0;
-        data.shortBreak[0].seconds = 0;
-        data.longBreak[0].seconds = 0;
-        setValues({...values, clockState: data});
+        setValues({...values, clockState: values.settingState});
         setClockStatus(defaultClockStatus);
         settingsModalToggler(false);
         setProgressBar(defaultProgressBar);

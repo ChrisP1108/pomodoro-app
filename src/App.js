@@ -14,8 +14,6 @@ const App = () => {
   const [clockStatus, setClockStatus] = useState(defaultClockStatus);
   const [progressBar, setProgressBar] = useState(defaultProgressBar);
 
-  console.log(values);
-
   return (
     <div className='viewport-container'>
         {toggleSettings && <div className='trans-background'></div>}

@@ -1,21 +1,19 @@
-import { useState, useEffect } from 'react';
 import { useInterval } from 'react-interval-hook';
-import { defaultClockStatus, progressBarStart } from '../Object-Content';
+import { progressBarStart } from '../Object-Content';
 
 const Clock = ({ values, setValues, toggleSettings, 
     stopClock, setStopClock, clockStatus, setClockStatus,
     progressBar, setProgressBar }) => {
     
     const clockCounter = (input) => {
-        let data = values.clockState;
         if (stopClock || toggleSettings) {
             stop(true);
             setStopClock(false);
             return;
         }
-        const clock = input === 'pomodoro' ? data.pomodoro[0]
-                        : input === 'short break' ? data.shortBreak[0]
-                        : data.longBreak[0];
+        const clock = input === 'pomodoro' ? values.clockState.pomodoro[0]
+                        : input === 'short break' ? values.clockState.shortBreak[0]
+                        : values.clockState.longBreak[0];
         if (clock.minutes === 0 && clock.seconds === 0) {
             stop(true);
             if (input === 'pomodoro') {
@@ -31,22 +29,19 @@ const Clock = ({ values, setValues, toggleSettings,
             return;
         } else if (clock.minutes >= 1 && clock.seconds === 0) {
             if (input === 'pomodoro') {
-                data.pomodoro[0].minutes = data.pomodoro[0].minutes - 1;
-                data.pomodoro[0].seconds = 59;
+                setValues({...values, clockState: {...values.clockState, pomodoro: [{...values.clockState.pomodoro[0], minutes: values.clockState.pomodoro[0].minutes - 1, seconds: 59}]}})
             } else if (input === 'short break') {
-                data.shortBreak[0].minutes = data.shortBreak[0].minutes - 1;
-                data.shortBreak[0].seconds = 59;
+                setValues({...values, clockState: {...values.clockState, shortBreak: [{...values.clockState.shortBreak[0], minutes: values.clockState.shortBreak[0].minutes - 1, seconds: 59}]}})
             } else {
-                data.longBreak[0].minutes = data.longBreak[0].minutes - 1;
-                data.longBreak[0].seconds = 59;
+                setValues({...values, clockState: {...values.clockState, longBreak: [{...values.clockState.longBreak[0], minutes: values.clockState.longBreak[0].minutes - 1, seconds: 59}]}})
             }    
         } else {
             if (input === 'pomodoro') {
-                data.pomodoro[0].seconds = data.pomodoro[0].seconds - 1;
+                setValues({...values, clockState: {...values.clockState, pomodoro: [{...values.clockState.pomodoro[0], seconds: values.clockState.pomodoro[0].seconds - 1}]}})
             } else if (input === 'short break') {
-                data.shortBreak[0].seconds = data.shortBreak[0].seconds - 1;
+                setValues({...values, clockState: {...values.clockState, shortBreak: [{...values.clockState.shortBreak[0], seconds: values.clockState.shortBreak[0].seconds - 1}]}})
             } else {
-                data.longBreak[0].seconds = data.longBreak[0].seconds - 1;
+                setValues({...values, clockState: {...values.clockState, longBreak: [{...values.clockState.longBreak[0], seconds: values.clockState.longBreak[0].seconds - 1}]}})
             }
         }
         const totalSeconds = (clock.minutes * 60) + clock.seconds;
@@ -60,8 +55,6 @@ const Clock = ({ values, setValues, toggleSettings,
             const incrementLongBreak = progressBar.longBreak / totalSeconds;
             setProgressBar({...progressBar, longBreak: progressBar.longBreak - incrementLongBreak});
         }
-        console.log(progressBar);
-        setValues({...values, clockState: data});
     }
 
     const { start, stop } = useInterval(
@@ -77,7 +70,6 @@ const Clock = ({ values, setValues, toggleSettings,
     );
 
     const clockStarterStopper = (type) => {
-        let data = values;
         if (type === 'pomodoro') {
             if (clockStatus.pomodoro === 'START') {
                 setClockStatus({...clockStatus, pomodoro: 'PAUSE'});
@@ -90,8 +82,7 @@ const Clock = ({ values, setValues, toggleSettings,
                 setClockStatus({...clockStatus, pomodoro: 'PAUSE'});
                 start(true);
             } else if (clockStatus.pomodoro === 'RESTART') {
-                data.clockState.pomodoro[0] = values.settingState.pomodoro[0];
-                setValues({...data});
+                setValues({...values, clockState: {...values.clockState, pomodoro: [{...values.settingState.pomodoro[0]}]}})
                 setClockStatus({...clockStatus, pomodoro: 'PAUSE'});
                 start(true);
                 setProgressBar({...progressBar, pomodoro: progressBarStart});
@@ -108,8 +99,7 @@ const Clock = ({ values, setValues, toggleSettings,
                 setClockStatus({...clockStatus, shortBreak: 'PAUSE'});
                 start(true);
             } else if (clockStatus.shortBreak === 'RESTART') {
-                data.clockState.shortBreak[0] = values.settingState.shortBreak[0];
-                setValues({...data});
+                setValues({...values, clockState: {...values.clockState, shortBreak: [{...values.settingState.shortBreak[0]}]}})
                 setClockStatus({...clockStatus, shortBreak: 'PAUSE'});
                 start(true);
                 setProgressBar({...progressBar, shortBreak: progressBarStart});
@@ -126,8 +116,7 @@ const Clock = ({ values, setValues, toggleSettings,
                 setClockStatus({...clockStatus, longBreak: 'PAUSE'});
                 start(true);
             } else if (clockStatus.longBreak === 'RESTART') {
-                data.clockState.longBreak[0] = values.settingState.longBreak[0];
-                setValues({...data});
+                setValues({...values, clockState: {...values.clockState, longBreak: [{...values.settingState.longBreak[0]}]}})
                 setClockStatus({...clockStatus, longBreak: 'PAUSE'});
                 start(true);
                 setProgressBar({...progressBar, longBreak: progressBarStart});
@@ -159,7 +148,7 @@ const Clock = ({ values, setValues, toggleSettings,
 
     const styleStatusText = (status) => {
         const text = document.querySelector('h4');
-        status === 'on' ? text.style.color = values.color 
+        status === 'on' ? text.style.color = values.clockState.color 
             : text.style.color = '#D7E0FF'
     }
 
@@ -172,9 +161,7 @@ const Clock = ({ values, setValues, toggleSettings,
                 <div className="progress-bar-container">
                     <svg height="100%" width="100%">
                         <circle cx="50%" cy="50%" r="48%" stroke={values.clockState.color}
-                            strokeLinecap={progressBar.pomodoro > 0  
-                                || progressBar.shortbreak > 0 
-                                || progressBar.shortbreak > 0 ? "round" : "square"}
+                            strokeLinecap="round"
                             strokeDashoffset={
                                 values.clockState.button === 'pomodoro' ? `${progressBar.pomodoro}`
                                 : values.clockState.button === 'short break' ? `${progressBar.shortBreak}`
