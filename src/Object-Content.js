@@ -1,15 +1,15 @@
 export const buttonFields = [
     {
         id: 1,
-        name: 'pomodoro',     
+        name: 'pomodoro'     
     },
     {
         id: 2,
-        name: 'short break',     
+        name: 'short break'    
     },
     {
         id: 3,
-        name: 'long break',     
+        name: 'long break'   
     },
 ]
 
@@ -62,37 +62,63 @@ export const colorFields = [
 ]
 
 export const defaultSettings = {
-    pomodoro: [
-        {
-            minutes: 1,
-            seconds: 0
-        }
-    ],
-    shortBreak: [
-        {
-            minutes: 1,
-            seconds: 0
-        }
-    ],
-    longBreak: [
-        {
-            minutes: 1,
-            seconds: 0
-        }
-    ],
-    font: 'Kumbh Sans',
-    color: '#F87070',
-    button: 'pomodoro'
-}
+    clockState: {
+        pomodoro: [
+            {
+                minutes: 1,
+                seconds: 0
+            }
+        ],
+        shortBreak: [
+            {
+                minutes: 1,
+                seconds: 0
+            }
+        ],
+        longBreak: [
+            {
+                minutes: 1,
+                seconds: 0
+            }
+        ],
+        font: 'Kumbh Sans',
+        color: '#F87070',
+        button: 'pomodoro'
+    },
+    settingState: {
+        pomodoro: [
+            {
+                minutes: 1,
+                seconds: 0
+            }
+        ],
+        shortBreak: [
+            {
+                minutes: 1,
+                seconds: 0
+            }
+        ],
+        longBreak: [
+            {
+                minutes: 1,
+                seconds: 0
+            }
+        ],
+        font: 'Kumbh Sans',
+        color: '#F87070',
+        button: 'pomodoro'
+    }
 
-export const defaultTimerState = {
-    pomodoro: false,
-    shortBreak: false,
-    longBreak: false
 }
 
 export const defaultClockStatus = {
     pomodoro: 'START',
     shortBreak: 'START',
     longBreak: 'START'
+}
+
+export const defaultProgressBar = {
+    pomodoro: 0,
+    shortBreak: 0,
+    longBreak: 0
 }

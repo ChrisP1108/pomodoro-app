@@ -1,17 +1,16 @@
-import { useState } from 'react';
-import { defaultSettings, timeFields, fontFields, colorFields} from '../Object-Content';
+import { timeFields, fontFields, colorFields, 
+    defaultClockStatus, defaultProgressBar, defaultSettings } from '../Object-Content';
 
-const Settings = ({ setValues, settingsModalToggler }) => {
-
-    const [fields, setFields] = useState(defaultSettings);
+const Settings = ({ values, setValues, settingsModalToggler,
+        setClockStatus, setProgressBar }) => {
 
     const valuestateUpdate = (name, value) => {
-        let data = fields;
+        let data = values.settingState;
         switch(name) {
             case 'pomodoro':
                 data.pomodoro[0].minutes = Number(value);
-                if (data.pomodoro <= 1) {
-                    data.pomodoro = Number(1);
+                if (data.pomodoro[0].minutes <= 1) {
+                    data.pomodoro[0].minutes = Number(1);
                     break;
                 }
                 break;
@@ -69,7 +68,7 @@ const Settings = ({ setValues, settingsModalToggler }) => {
             default:
                 break;
         }
-        setFields({...data});
+        setValues({...values, settingState: data});
     }
 
     const valuesHeader = () => {
@@ -91,7 +90,9 @@ const Settings = ({ setValues, settingsModalToggler }) => {
                 <div className="number-value-container">
                     <input type="number" 
                         name={field.variable}
-                        value={eval(`fields.${field.variable}[0].minutes`)}
+                        value={field.id === 1 ? values.settingState.pomodoro[0].minutes
+                                : field.id === 2 ? values.settingState.shortBreak[0].minutes
+                                : values.settingState.longBreak[0].minutes}
                         onChange={(e) => valuestateUpdate(e.target.name, e.target.value)}
                         className="text-field-placement" 
                     />
@@ -114,7 +115,7 @@ const Settings = ({ setValues, settingsModalToggler }) => {
         return (
             <div key={font.id} 
                 onClick ={() => valuestateUpdate('font', font.font)}
-                className={`${fields.font === font.font && `active-font`} 
+                className={`${values.settingState.font === font.font && `active-font`} 
                     f${font.id} font-circle-container pointer`}>
                     <p>Aa</p>
             </div>
@@ -126,12 +127,23 @@ const Settings = ({ setValues, settingsModalToggler }) => {
             <div key={color.id} 
                 onClick ={() => valuestateUpdate('color', color.color)}
                 className={`c${color.id} circle-container pointer`}>
-                    {fields.color === color.color && 
+                    {values.settingState.color === color.color && 
                         <div className="circle-checked"></div>
                     }
             </div>
         )
     });
+
+    const toggleApplyButton = () => {
+        let data = values.settingState
+        data.pomodoro[0].seconds = 0;
+        data.shortBreak[0].seconds = 0;
+        data.longBreak[0].seconds = 0;
+        setValues({...values, clockState: data});
+        setClockStatus(defaultClockStatus);
+        settingsModalToggler(false);
+        setProgressBar(defaultProgressBar);
+    }
 
     return (
         <div className='settings-modal-container'>
@@ -156,7 +168,7 @@ const Settings = ({ setValues, settingsModalToggler }) => {
                 <div className="field-bottom-filler"></div>
             </div>
             <div className="d-flex justify-content-center">
-                <div onClick={() => { setValues({...fields}); settingsModalToggler(false) }}
+                <div onClick={() => toggleApplyButton()}
                     className="apply-button-container pointer">
                     <p>Apply</p>
                 </div>

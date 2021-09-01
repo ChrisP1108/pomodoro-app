@@ -1,11 +1,11 @@
 import { buttonFields } from '../Object-Content.js';
 
-const Options = ({ values, setValues, setStopClock }) => {
+const Options = ({ values, setValues, setStopClock, setProgressBar }) => {
 
     const buttonStateUpdate = (value) => {
-        const data = values;
+        let data = values.clockState;
         data.button = value;
-        setValues({...data})
+        setValues({...values, clockState: data})
     }
     
     const buttonMapping = buttonFields.map(button => {
@@ -13,10 +13,10 @@ const Options = ({ values, setValues, setStopClock }) => {
             <div key={button.id} 
                 onClick={() => { buttonStateUpdate(button.name); setStopClock(true)}}
                 style={{ backgroundColor: 
-                    values.button === button.name && values.color}}
+                    values.clockState.button === button.name && values.clockState.color}}
                 className='option-button-container pointer'>
-                    <h2 style={{ fontFamily: values.font }}
-                        className={values.button === button.name ? `button-active-text` : ``}>{button.name}</h2>
+                    <h2 style={{ fontFamily: values.clockState.font }}
+                        className={values.clockState.button === button.name ? `button-active-text` : ``}>{button.name}</h2>
             </div>
         )
     });
