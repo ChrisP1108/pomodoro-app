@@ -62,9 +62,24 @@ export const colorFields = [
 ]
 
 export const defaultSettings = {
-    pomodoro: 1,
-    shortBreak: 1,
-    longBreak: 1,
+    pomodoro: [
+        {
+            minutes: 1,
+            seconds: 0
+        }
+    ],
+    shortBreak: [
+        {
+            minutes: 1,
+            seconds: 0
+        }
+    ],
+    longBreak: [
+        {
+            minutes: 1,
+            seconds: 0
+        }
+    ],
     font: 'Kumbh Sans',
     color: '#F87070',
     button: 'pomodoro'

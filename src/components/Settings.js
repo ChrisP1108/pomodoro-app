@@ -1,59 +1,62 @@
-import { timeFields, fontFields, colorFields} from '../Object-Content';
+import { useState } from 'react';
+import { defaultSettings, timeFields, fontFields, colorFields} from '../Object-Content';
 
-const values = ({ values, setValues, settingsModalToggler }) => {
+const Settings = ({ setValues, settingsModalToggler }) => {
+
+    const [fields, setFields] = useState(defaultSettings);
 
     const valuestateUpdate = (name, value) => {
-        let data = values;
+        let data = fields;
         switch(name) {
             case 'pomodoro':
-                data.pomodoro = Number(value);
+                data.pomodoro[0].minutes = Number(value);
                 if (data.pomodoro <= 1) {
                     data.pomodoro = Number(1);
                     break;
                 }
                 break;
             case 'increment.pomodoro':
-                data.pomodoro = data.pomodoro + 1;
+                data.pomodoro[0].minutes = data.pomodoro[0].minutes + 1;
                 break;
             case 'decrement.pomodoro':
-                if (data.pomodoro <= 1) {
-                    data.pomodoro = Number(1);
+                if (data.pomodoro[0].minutes <= 1) {
+                    data.pomodoro[0].minutes = Number(1);
                     break;
                 } else {
-                    data.pomodoro = data.pomodoro - 1;
+                    data.pomodoro[0].minutes = data.pomodoro[0].minutes - 1;
                     break;
                 }
             case 'shortBreak':
                 data.shortBreak = Number(value);
-                if (data.shortBreak <= 1) {
-                    data.shortBreak = Number(1);
+                if (data.shortBreak[0].minutes <= 1) {
+                    data.shortBreak[0].minutes = Number(1);
                     break;
                 }
                 break;
             case 'increment.shortBreak':
-                data.shortBreak = data.shortBreak + 1;
+                data.shortBreak[0].minutes = data.shortBreak[0].minutes + 1;
                 break;
             case 'decrement.shortBreak':
-                data.shortBreak = data.shortBreak - 1;
-                if (data.shortBreak <= 1) {
-                    data.shortBreak = Number(1);
+                data.shortBreak[0].minutes = data.shortBreak[0].minutes - 1;
+                if (data.shortBreak[0].minutes <= 1) {
+                    data.shortBreak[0].minutes = Number(1);
                     break;
                 }
                 break;
             case 'longBreak':
-                data.longBreak = Number(value);
-                if (data.longBreak <= 1) {
-                    data.longBreak = Number(1);
+                data.longBreak[0].minutes = Number(value);
+                if (data.longBreak[0].minutes <= 1) {
+                    data.longBreak[0].minutes = Number(1);
                     break;
                 }
                 break;
             case 'increment.longBreak':
-                data.longBreak = data.longBreak + 1;
+                data.longBreak[0].minutes = data.longBreak[0].minutes + 1;
                 break;
             case 'decrement.longBreak':
-                data.longBreak = data.longBreak - 1;
-                if (data.longBreak <= 1) {
-                    data.longBreak = Number(1);
+                data.longBreak[0].minutes = data.longBreak[0].minutes - 1;
+                if (data.longBreak[0].minutes <= 1) {
+                    data.longBreak[0].minutes = Number(1);
                     break;
                 }
                 break;
@@ -66,7 +69,7 @@ const values = ({ values, setValues, settingsModalToggler }) => {
             default:
                 break;
         }
-        setValues({...data});
+        setFields({...data});
     }
 
     const valuesHeader = () => {
@@ -88,7 +91,7 @@ const values = ({ values, setValues, settingsModalToggler }) => {
                 <div className="number-value-container">
                     <input type="number" 
                         name={field.variable}
-                        value={eval(`values.${field.variable}`)}
+                        value={eval(`fields.${field.variable}[0].minutes`)}
                         onChange={(e) => valuestateUpdate(e.target.name, e.target.value)}
                         className="text-field-placement" 
                     />
@@ -111,7 +114,7 @@ const values = ({ values, setValues, settingsModalToggler }) => {
         return (
             <div key={font.id} 
                 onClick ={() => valuestateUpdate('font', font.font)}
-                className={`${values.font === font.font && `active-font`} 
+                className={`${fields.font === font.font && `active-font`} 
                     f${font.id} font-circle-container pointer`}>
                     <p>Aa</p>
             </div>
@@ -123,7 +126,7 @@ const values = ({ values, setValues, settingsModalToggler }) => {
             <div key={color.id} 
                 onClick ={() => valuestateUpdate('color', color.color)}
                 className={`c${color.id} circle-container pointer`}>
-                    {values.color === color.color && 
+                    {fields.color === color.color && 
                         <div className="circle-checked"></div>
                     }
             </div>
@@ -153,7 +156,7 @@ const values = ({ values, setValues, settingsModalToggler }) => {
                 <div className="field-bottom-filler"></div>
             </div>
             <div className="d-flex justify-content-center">
-                <div onClick={() => settingsModalToggler(false)}
+                <div onClick={() => { setValues({...fields}); settingsModalToggler(false) }}
                     className="apply-button-container pointer">
                     <p>Apply</p>
                 </div>
@@ -162,4 +165,4 @@ const values = ({ values, setValues, settingsModalToggler }) => {
     )
 }
 
-export default values
+export default Settings
