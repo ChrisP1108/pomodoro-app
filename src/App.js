@@ -30,6 +30,7 @@ const App = () => {
             values={values}
             setClockStatus={setClockStatus}
             setProgressBar={setProgressBar}
+            toggleSettings={toggleSettings}
           /> 
         }
       <div className='main-container'>

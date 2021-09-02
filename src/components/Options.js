@@ -12,8 +12,6 @@ const Options = ({ values, setValues, setStopClock, setProgressBar }) => {
         return (
             <div key={button.id} 
                 onClick={() => { buttonStateUpdate(button.name); setStopClock(true)}}
-                style={{ backgroundColor: 
-                    values.clockState.button === button.name && values.clockState.color}}
                 className='option-button-container pointer'>
                     <h2 style={{ fontFamily: values.clockState.font }}
                         className={values.clockState.button === button.name ? `button-active-text` : ``}>{button.name}</h2>
@@ -24,6 +22,11 @@ const Options = ({ values, setValues, setStopClock, setProgressBar }) => {
     return (
         <div className='options-container'>
             {buttonMapping}
+            <div className="option-button-highlight"
+                style={{ backgroundColor: values.clockState.color, 
+                    transform: `${values.clockState.button === 'pomodoro' ? `translateX(-115%)` 
+                    : values.clockState.button === 'short break' ? `translateX(0%)` 
+                    : `translateX(115%)`}`}}></div>
         </div>
     )
 }

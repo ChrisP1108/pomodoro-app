@@ -3,7 +3,7 @@
     width: 80vw;
     height: calc(80vw);
     background: linear-gradient(-45deg, #2E325A, #0E112A);
-    filter: drop-shadow(-3.125rem -3.125rem 6.25rem #272C5A);   
+    filter: drop-shadow(-3.125rem -3.125rem 6.25rem #272C5A); 
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -45,6 +45,7 @@
         position: relative;
         height: 2.5rem;
         width: 80%;
+        transition: .25s!important;
     }
 
     .progress-bar-container {
@@ -61,7 +62,8 @@
             position: absolute;
             fill: transparent;
             stroke-width: 3.75%;
-            stroke-dasharray: 300%;         
+            stroke-dasharray: 300%;  
+            transition: 0.25s!important;       
         }
     }
     .clock-numbers-container {

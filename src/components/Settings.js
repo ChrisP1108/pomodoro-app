@@ -2,7 +2,7 @@ import { timeFields, fontFields, colorFields,
     defaultClockStatus, defaultProgressBar } from '../Object-Content';
 
 const Settings = ({ values, setValues, settingsModalToggler,
-        setClockStatus, setProgressBar }) => {
+        setClockStatus, setProgressBar, toggleSettings }) => {
 
     const valuestateUpdate = (name, value) => {
         switch(name) {
@@ -85,7 +85,7 @@ const Settings = ({ values, setValues, settingsModalToggler,
 
     const timeFieldsMapping = timeFields.map(field => {
         return (
-            <>
+            <div key={field.id} className="d-flex">
                 <div key={field.id} className="number-row-container d-md-flex flex-md-column">
                     <h6>{field.name}</h6>
                     <div className="number-value-container mt-md-2">
@@ -112,7 +112,7 @@ const Settings = ({ values, setValues, settingsModalToggler,
                 {field.id !== 3 &&
                     <div className="d-none d-md-block field-side-gap-filler"></div>
                 }
-            </>
+            </div>
         )
     });
 
@@ -146,8 +146,10 @@ const Settings = ({ values, setValues, settingsModalToggler,
         setProgressBar(defaultProgressBar);
     }
 
+    console.log(toggleSettings);
+
     return (
-        <div className='settings-modal-container'>
+        <div className={`${toggleSettings && `modal-animation`} settings-modal-container`}>
             {valuesHeader()}
             <div className="section-settings-container">
                 <h5 className="time-heading-adjust">TIME (MINUTES)</h5>

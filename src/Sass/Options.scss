@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: space-around;
     z-index: 1;
+    position: relative;
 }
 
 .option-button-container {
@@ -26,11 +27,24 @@
         margin: 0!important;
         padding: 0!important;
         opacity: .4;
+        transition: .5s!important;
     }
     .button-active-text {
         opacity: 1!important;
         color: $e!important;
     }
+}
+
+.option-button-highlight {
+    z-index: -1;
+    width: 29%!important;
+    height: 3rem!important;
+    border-radius: 1.5rem!important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    transition: .5s!important;
 }
 
 @media(min-width: 768px) {
