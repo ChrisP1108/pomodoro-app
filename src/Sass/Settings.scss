@@ -118,6 +118,7 @@
             -webkit-appearance: none; 
             margin: 0; 
         }
+        input[type=number] { -moz-appearance:textfield; }
         .text-field-placement {
             width: 30%!important;
             border: none;
@@ -264,6 +265,15 @@
             font-weight: 800;
             opacity: 1;
         }
+    }
+    .field-error-text {
+        color: $a!important;
+        opacity: 1!important;
+        transition: 0.25s;
+    }
+    .field-error-border {
+        border: 0.063rem $a solid!important;
+        transition: 0.25s;
     }
 }
 

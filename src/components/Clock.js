@@ -163,7 +163,8 @@ const Clock = ({ values, setValues, toggleSettings,
 
     return (
         <div className='clock-body-outer-container'>
-            <div onClick={() => clockStarterStopper(values.clockState.button)}
+            <div onClick={() => { clockStarterStopper(values.clockState.button);
+                    styleStatusText('off')} }
                 onMouseOver={() => styleStatusText('on')} 
                 onMouseOut={() => styleStatusText('off')}
                 className="clock-body-inner-container pointer">
@@ -181,7 +182,7 @@ const Clock = ({ values, setValues, toggleSettings,
                 </div>
                 <div className="clock-numbers-container">
                     <h3 style={{fontFamily: values.clockState.font, 
-                            transform: values.clockState.font === 'Space Mono' ? `scale(0.8)` : `scale(1.0)`}}>{clockTimeDisplay()}</h3>
+                            transform: values.clockState.font === 'Space Mono' ? `scale(0.9)` : `scale(1)`}}>{clockTimeDisplay()}</h3>
                     <h4 style={{fontFamily: values.clockState.font }}>{clockStatusDisplay()}</h4>
                 </div>
             </div>

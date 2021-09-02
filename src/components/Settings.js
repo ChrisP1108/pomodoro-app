@@ -2,18 +2,22 @@ import { timeFields, fontFields, colorFields,
     defaultClockStatus, defaultProgressBar } from '../Object-Content';
 
 const Settings = ({ values, setValues, settingsModalToggler,
-        setClockStatus, setProgressBar, toggleSettings }) => {
+        setClockStatus, setProgressBar, toggleSettings, 
+        fieldCheck, setFieldCheck }) => {
 
     const valuestateUpdate = (name, value) => {
         switch(name) {
             case 'pomodoro':
-                setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: Number(value)}]}})
-                if (values.settingState.pomodoro[0].minutes <= 1) {
-                    setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: 1}]}})
+                if (value < 0 || value > 99) {
+                    setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: 0}]}})
                     break;
                 }
+                setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: Number(value)}]}})
                 break;
             case 'increment.pomodoro':
+                if (values.settingState.pomodoro[0].minutes >= 99) {
+                    break;
+                }
                 setValues({...values, settingState: {...values.settingState, pomodoro: [{...values.settingState.pomodoro[0], minutes: values.settingState.pomodoro[0].minutes + 1}]}})
                 break;
             case 'decrement.pomodoro':
@@ -26,12 +30,15 @@ const Settings = ({ values, setValues, settingsModalToggler,
                 }
             case 'shortBreak':
                 setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: Number(value)}]}})
-                if (values.settingState.shortBreak[0].minutes <= 1) {
-                    setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: 1}]}})
+                if (value < 0) {
+                    setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: 0}]}})
                     break;
                 }
                 break;
             case 'increment.shortBreak':
+                if (values.settingState.shortBreak[0].minutes >= 99) {
+                    break;
+                }
                 setValues({...values, settingState: {...values.settingState, shortBreak: [{...values.settingState.shortBreak[0], minutes: values.settingState.shortBreak[0].minutes + 1}]}})
                 break;
             case 'decrement.shortBreak':
@@ -44,12 +51,15 @@ const Settings = ({ values, setValues, settingsModalToggler,
                 break;
             case 'longBreak':
                 setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: Number(value)}]}})
-                if (values.settingState.longBreak[0].minutes <= 1) {
-                    setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: 1}]}})
+                if (value < 0) {
+                    setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: 0}]}})
                     break;
                 }
                 break;
             case 'increment.longBreak':
+                if (values.settingState.longBreak[0].minutes >= 99) {
+                    break;
+                }
                 setValues({...values, settingState: {...values.settingState, longBreak: [{...values.settingState.longBreak[0], minutes: values.settingState.longBreak[0].minutes + 1}]}})
                 break;
             case 'decrement.longBreak':
@@ -68,7 +78,7 @@ const Settings = ({ values, setValues, settingsModalToggler,
                 break;
             default:
                 break;
-        }
+        }  
     }
 
     const valuesHeader = () => {
@@ -88,8 +98,18 @@ const Settings = ({ values, setValues, settingsModalToggler,
             <div key={field.id} className="d-flex">
                 <div key={field.id} className="number-row-container d-md-flex flex-md-column">
                     <h6>{field.name}</h6>
-                    <div className="number-value-container mt-md-2">
-                        <input type="number" 
+                    <h6 className={fieldCheck && (field.id === 1 ? values.settingState.pomodoro[0].minutes === 0
+                        : field.id === 2 ? values.settingState.shortBreak[0].minutes === 0
+                        : values.settingState.longBreak[0].minutes === 0) 
+                        ? `field-error-text` : `d-none`}>
+                            Can't be 0
+                    </h6>
+                    <div className={`${fieldCheck && (field.id === 1 ? values.settingState.pomodoro[0].minutes === 0
+                        : field.id === 2 ? values.settingState.shortBreak[0].minutes === 0
+                        : values.settingState.longBreak[0].minutes === 0) 
+                        ? `field-error-border` : ``}
+                        number-value-container mt-md-2`}>
+                        <input type="text" 
                             name={field.variable}
                             value={field.id === 1 ? values.settingState.pomodoro[0].minutes
                                     : field.id === 2 ? values.settingState.shortBreak[0].minutes
@@ -140,13 +160,22 @@ const Settings = ({ values, setValues, settingsModalToggler,
     });
 
     const toggleApplyButton = () => {
+        if (values.settingState.pomodoro[0].minutes === 0 
+            || values.settingState.shortBreak[0].minutes === 0
+            || values.settingState.longBreak[0].minutes === 0) {
+            setFieldCheck(true);
+            return
+        }
+        setFieldCheck(false);
         setValues({...values, clockState: values.settingState});
+        const SavedSettings = values.settingState;
+        console.log(SavedSettings);
+        const JsonSavedSettings = JSON.stringify(SavedSettings);
+        localStorage.setItem("SavedSettings", JsonSavedSettings);
         setClockStatus(defaultClockStatus);
         settingsModalToggler(false);
         setProgressBar(defaultProgressBar);
     }
-
-    console.log(toggleSettings);
 
     return (
         <div className={`${toggleSettings && `modal-animation`} settings-modal-container`}>

@@ -8,11 +8,17 @@ import './Sass/App.scss';
 
 const App = () => {
 
+  const storedSettings = JSON.parse(localStorage.getItem("SavedSettings"));
+  const storedOutput = {...defaultSettings, settingState: storedSettings, 
+    clockState: storedSettings}
+
   const [stopClock, setStopClock] = useState(false);
   const [toggleSettings, setToggleSettings] = useState(false);
-  const [values, setValues] = useState(defaultSettings);
+  const [values, setValues] = useState(
+    storedSettings === null ? defaultSettings : storedOutput);
   const [clockStatus, setClockStatus] = useState(defaultClockStatus);
   const [progressBar, setProgressBar] = useState(defaultProgressBar);
+  const [fieldCheck, setFieldCheck] = useState(false);
 
   if (stopClock) {
     setTimeout(() => {
@@ -31,6 +37,8 @@ const App = () => {
             setClockStatus={setClockStatus}
             setProgressBar={setProgressBar}
             toggleSettings={toggleSettings}
+            fieldCheck={fieldCheck}
+            setFieldCheck={setFieldCheck}
           /> 
         }
       <div className='main-container'>
