@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/ChrisP1108/pomodoro-app/static/css/main.09919db4.chunk.css",
+    "main.js": "/ChrisP1108/pomodoro-app/static/js/main.b2ec8051.chunk.js",
+    "main.js.map": "/ChrisP1108/pomodoro-app/static/js/main.b2ec8051.chunk.js.map",
+    "runtime-main.js": "/ChrisP1108/pomodoro-app/static/js/runtime-main.f24352b8.js",
+    "runtime-main.js.map": "/ChrisP1108/pomodoro-app/static/js/runtime-main.f24352b8.js.map",
+    "static/css/2.c490997a.chunk.css": "/ChrisP1108/pomodoro-app/static/css/2.c490997a.chunk.css",
+    "static/js/2.6683d200.chunk.js": "/ChrisP1108/pomodoro-app/static/js/2.6683d200.chunk.js",
+    "static/js/2.6683d200.chunk.js.map": "/ChrisP1108/pomodoro-app/static/js/2.6683d200.chunk.js.map",
+    "static/js/3.dbc83354.chunk.js": "/ChrisP1108/pomodoro-app/static/js/3.dbc83354.chunk.js",
+    "static/js/3.dbc83354.chunk.js.map": "/ChrisP1108/pomodoro-app/static/js/3.dbc83354.chunk.js.map",
+    "index.html": "/ChrisP1108/pomodoro-app/index.html",
+    "static/css/2.c490997a.chunk.css.map": "/ChrisP1108/pomodoro-app/static/css/2.c490997a.chunk.css.map",
+    "static/css/main.09919db4.chunk.css.map": "/ChrisP1108/pomodoro-app/static/css/main.09919db4.chunk.css.map",
+    "static/js/2.6683d200.chunk.js.LICENSE.txt": "/ChrisP1108/pomodoro-app/static/js/2.6683d200.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/ChrisP1108/pomodoro-app/static/media/icon-settings.e0a317db.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f24352b8.js",
+    "static/css/2.c490997a.chunk.css",
+    "static/js/2.6683d200.chunk.js",
+    "static/css/main.09919db4.chunk.css",
+    "static/js/main.b2ec8051.chunk.js"
+  ]
+}
