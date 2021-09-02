@@ -65,7 +65,7 @@ export const defaultSettings = {
     clockState: {
         pomodoro: [
             {
-                minutes: 1,
+                minutes: 10,
                 seconds: 0
             }
         ],
@@ -77,7 +77,7 @@ export const defaultSettings = {
         ],
         longBreak: [
             {
-                minutes: 1,
+                minutes: 2,
                 seconds: 0
             }
         ],
@@ -88,7 +88,7 @@ export const defaultSettings = {
     settingState: {
         pomodoro: [
             {
-                minutes: 1,
+                minutes: 10,
                 seconds: 0
             }
         ],
@@ -100,7 +100,7 @@ export const defaultSettings = {
         ],
         longBreak: [
             {
-                minutes: 1,
+                minutes: 2,
                 seconds: 0
             }
         ],
@@ -123,4 +123,4 @@ export const defaultProgressBar = {
     longBreak: 0
 }
 
-export const progressBarStart = 740;
+export const progressBarStart = 300;

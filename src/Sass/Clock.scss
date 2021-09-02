@@ -70,3 +70,128 @@
         align-items: center;
     }
 }
+
+@media(max-width: 375px) {
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3rem!important;
+            font-size: 3rem!important;
+        }
+        h4 {
+            margin-top: -2rem!important;
+            font-size: 0.5rem!important;
+        }
+    }
+}
+
+@media(min-width: 480px) {
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3rem!important;
+            font-size: 7rem!important;
+        }
+        h4 {
+            margin-top: 3rem!important;
+            font-size: 1.25rem!important;
+        }
+    }
+}
+
+@media(min-width: 640px) {
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3rem!important;
+            font-size: 9rem!important;
+        }
+        h4 {
+            margin-top: 6rem!important;
+            font-size: 1.5rem!important;
+        }
+    }
+}
+
+@media(min-width: 768px) {
+    .clock-body-outer-container {
+        margin-top: 6.813rem!important;
+        width: 53.38vw;
+        height: calc(53.38vw);
+    }
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3.25rem!important;
+            font-size: 6.25rem!important;
+        }
+        h4 {
+            margin-top: 2.25rem!important;
+            font-size: 1rem!important;
+        }
+    }
+}
+
+@media(min-width: 878px) {
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3.5rem!important;
+            font-size: 7.25rem!important;
+        }
+        h4 {
+            margin-top: 3.5rem!important;
+            font-size: 1.25rem!important;
+        }
+    }
+}
+
+@media(min-width: 992px) {
+    .clock-body-outer-container {
+        margin-top: 5rem!important;
+        width: 45vw;
+        height: calc(45vw);
+    }
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3.1rem!important;
+            font-size: 7rem!important;
+        }
+        h4 {
+            margin-top: 3.25rem!important;
+            font-size: 1.1rem!important;
+        }
+    }
+}
+
+@media(min-width: 1200px) {
+    .clock-body-outer-container {
+        margin-top: 4rem!important;
+        width: 35vw;
+        height: calc(35vw);
+    }
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3rem!important;
+            font-size: 6.5rem!important;
+        }
+        h4 {
+            margin-top: 2.5rem!important;
+            font-size: 1.25rem!important;
+        }
+    }
+}
+
+@media(min-width: 1400px) {
+    .clock-body-outer-container {
+        margin-top: 3rem!important;
+        width: 27vw;
+        height: calc(27vw);
+    }
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 3rem!important;
+            font-size: 6.25rem!important;
+        }
+        h4 {
+            margin-top: 2.5rem!important;
+            font-size: 1rem!important;
+        }
+    }
+}
+

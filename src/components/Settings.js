@@ -85,29 +85,34 @@ const Settings = ({ values, setValues, settingsModalToggler,
 
     const timeFieldsMapping = timeFields.map(field => {
         return (
-            <div key={field.id} className="number-row-container">
-                <h6>{field.name}</h6>
-                <div className="number-value-container">
-                    <input type="number" 
-                        name={field.variable}
-                        value={field.id === 1 ? values.settingState.pomodoro[0].minutes
-                                : field.id === 2 ? values.settingState.shortBreak[0].minutes
-                                : values.settingState.longBreak[0].minutes}
-                        onChange={(e) => valuestateUpdate(e.target.name, e.target.value)}
-                        className="text-field-placement" 
-                    />
-                    <div className="text-field-arrows-container">
-                        <div className="text-field-up-icon">
-                            <div onClick ={() => valuestateUpdate(`increment.${field.variable}`)}
-                                className="text-field-arrow-filler-up pointer"></div>
-                        </div>
-                        <div className="text-field-down-icon">
-                            <div onClick ={() => valuestateUpdate(`decrement.${field.variable}`)}
-                                className="text-field-arrow-filler-down pointer"></div>
+            <>
+                <div key={field.id} className="number-row-container d-md-flex flex-md-column">
+                    <h6>{field.name}</h6>
+                    <div className="number-value-container mt-md-2">
+                        <input type="number" 
+                            name={field.variable}
+                            value={field.id === 1 ? values.settingState.pomodoro[0].minutes
+                                    : field.id === 2 ? values.settingState.shortBreak[0].minutes
+                                    : values.settingState.longBreak[0].minutes}
+                            onChange={(e) => valuestateUpdate(e.target.name, e.target.value)}
+                            className="text-field-placement" 
+                        />
+                        <div className="text-field-arrows-container">
+                            <div className="text-field-up-icon">
+                                <div onClick ={() => valuestateUpdate(`increment.${field.variable}`)}
+                                    className="text-field-arrow-filler-up pointer"></div>
+                            </div>
+                            <div className="text-field-down-icon">
+                                <div onClick ={() => valuestateUpdate(`decrement.${field.variable}`)}
+                                    className="text-field-arrow-filler-down pointer"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                {field.id !== 3 &&
+                    <div className="d-none d-md-block field-side-gap-filler"></div>
+                }
+            </>
         )
     });
 
@@ -145,23 +150,27 @@ const Settings = ({ values, setValues, settingsModalToggler,
         <div className='settings-modal-container'>
             {valuesHeader()}
             <div className="section-settings-container">
-                <h5>TIME (MINUTES)</h5>
+                <h5 className="time-heading-adjust">TIME (MINUTES)</h5>
+                <div className="w-100 d-md-flex flex-md-row">
                 {timeFieldsMapping}
+                </div>
                 <div className="field-bottom-filler"></div>
             </div>
-            <div className="section-settings-container">
+            <div className="section-font-container d-md-flex flex-md-row 
+                justify-content-md-between align-items-md-center">
                 <h5>FONT</h5>
-                <div className="d-flex w-50 justify-content-between mt-2">
+                <div className="d-flex w-50 w-32 justify-content-between">
                     {fontFieldsMapping}
                 </div>
-                <div className="field-bottom-filler"></div>
+                <div className="field-bottom-filler d-md-none"></div>
             </div>
-            <div className="section-color-container">
+            <div className="section-color-container d-md-flex flex-md-row
+                justify-content-md-between align-items-md-center">
                 <h5>COLOR</h5>
-                <div className="d-flex w-50 justify-content-between mt-2">
+                <div className="d-flex w-50 w-32 justify-content-between mt-2">
                     {colorFieldsMapping}
                 </div>
-                <div className="field-bottom-filler"></div>
+                <div className="field-bottom-filler d-md-none"></div>
             </div>
             <div className="d-flex justify-content-center">
                 <div onClick={() => toggleApplyButton()}

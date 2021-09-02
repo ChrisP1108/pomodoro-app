@@ -172,10 +172,10 @@ const Clock = ({ values, setValues, toggleSettings,
                         <circle cx="50%" cy="50%" r="48%" stroke={values.clockState.color}
                             strokeLinecap="round"
                             strokeDashoffset={
-                                values.clockState.button === 'pomodoro' ? `${progressBar.pomodoro}`
-                                : values.clockState.button === 'short break' ? `${progressBar.shortBreak}`
-                                : `${progressBar.longBreak}`
-                            }>   
+                                values.clockState.button === 'pomodoro' ? `${progressBar.pomodoro}%`
+                                : values.clockState.button === 'short break' ? `${progressBar.shortBreak}%`
+                                : `${progressBar.longBreak}%`
+                            }>
                         </circle>
                     </svg>
                 </div>

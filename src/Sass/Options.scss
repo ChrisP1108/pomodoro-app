@@ -32,3 +32,27 @@
         color: $e!important;
     }
 }
+
+@media(min-width: 768px) {
+    .options-container {
+        width: 90.75%!important;
+    }
+}
+
+@media(min-width: 992px) {
+    .options-container {
+        width: 75%!important;
+    }
+}
+
+@media(min-width: 1200px) {
+    .options-container {
+        width: 55%!important;
+    }
+}
+
+@media(min-width: 1400px) {
+    .options-container {
+        width: 45%!important;
+    }
+}
