@@ -96,6 +96,24 @@
     }
 }
 
+@media(min-width: 350px) {
+    .clock-body-inner-container {
+        h3 {
+            margin-top: 15vw!important;
+            font-size: 4.5rem!important;
+
+            span {
+                display: inline-block;
+                width: 5.25rem!important;
+            }
+        }
+        h4 {
+            margin-top: -2vw!important;
+            font-size: 0.75rem!important;
+        }
+    }
+}
+
 @media(min-width: 375px) {
     .clock-body-inner-container {
         h3 {
