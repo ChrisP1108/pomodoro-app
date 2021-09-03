@@ -134,18 +134,25 @@ const Clock = ({ values, setValues, toggleSettings,
     }
 
 
-    const clockTimeDisplay = () => {
+    const clockTimeDisplayMinutes = () => {
         const state = values.clockState
         const minutes = state.button === 'pomodoro' 
             ? state.pomodoro[0].minutes 
             : state.button === 'short break' ? state.shortBreak[0].minutes
             : state.longBreak[0].minutes
+        const minOutput = minutes < 10 ? `0${minutes}` : minutes
+        return minOutput;
+    }
+
+    const clockTimeDisplaySeconds = () => {
+        const state = values.clockState
         const seconds = state.button === 'pomodoro' 
             ? state.pomodoro[0].seconds
             : state.button === 'short break' ? state.shortBreak[0].seconds
             : state.longBreak[0].seconds
-        const data = `${minutes < 10 ? `0${minutes}` : minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
-        return data;
+        const secOutput = seconds < 10 ? `0${seconds}` 
+        : seconds
+        return secOutput;
     }
 
     const clockStatusDisplay = () => {
@@ -182,8 +189,11 @@ const Clock = ({ values, setValues, toggleSettings,
                 </div>
                 <div className="clock-numbers-container">
                     <h3 style={{fontFamily: values.clockState.font, 
-                            transform: values.clockState.font === 'Space Mono' ? `scale(0.9)` : `scale(1)`}}>{clockTimeDisplay()}</h3>
-                    <h4 style={{fontFamily: values.clockState.font }}>{clockStatusDisplay()}</h4>
+                            transform: values.clockState.font === 'Space Mono' ? `scale(0.9)` : `scale(1)`}}>
+                            <span>{clockTimeDisplayMinutes()}</span>:<span>{clockTimeDisplaySeconds()}</span>
+                    </h3>
+                    <h4 style={{fontFamily: values.clockState.font }}>{clockStatusDisplay()}
+                    </h4>
                 </div>
             </div>
         </div>
