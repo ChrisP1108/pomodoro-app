@@ -54,16 +54,21 @@ const Clock = ({ values, setValues, toggleSettings,
             }
         }
         const totalSeconds = (clock.minutes * 60) + clock.seconds;
-        if (input === 'pomodoro') {
-            const incrementPomodoro = progressBar.pomodoro / totalSeconds;
-            setProgressBar({...progressBar, pomodoro: progressBar.pomodoro - incrementPomodoro});
-        } else if (input === 'short break') {
-            const incrementShortBreak = progressBar.shortBreak / totalSeconds;
-            setProgressBar({...progressBar, shortBreak: progressBar.shortBreak - incrementShortBreak});
-        } else {
-            const incrementLongBreak = progressBar.longBreak / totalSeconds;
-            setProgressBar({...progressBar, longBreak: progressBar.longBreak - incrementLongBreak});
-        }
+        for(let i=1; i <= 10; i++) {
+            setTimeout(() => {
+                if (input === 'pomodoro') {
+                    const incrementPomodoro = progressBar.pomodoro / totalSeconds * i/10 + progressBar.pomodoro / totalSeconds / 10;
+                    setProgressBar({...progressBar, pomodoro: progressBar.pomodoro - incrementPomodoro});
+                } else if (input === 'short break') {
+                    const incrementShortBreak = progressBar.shortBreak / totalSeconds * i/10 + progressBar.shortBreak / totalSeconds / 10;
+                    setProgressBar({...progressBar, shortBreak: progressBar.shortBreak - incrementShortBreak});
+                    console.log(progressBar.shortBreak)
+                } else {
+                    const incrementLongBreak = progressBar.longBreak / totalSeconds * i/10 + progressBar.longBreak / totalSeconds / 10;
+                    setProgressBar({...progressBar, longBreak: progressBar.longBreak - incrementLongBreak});
+                }
+            }, 100 * i)
+        }    
     }
 
     const { start, stop } = useInterval(
